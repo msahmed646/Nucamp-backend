@@ -1,5 +1,3 @@
-const Collection = require('mongodb/lib/collection');
-
 const assert = require('assert').strict;
 
 exports.insertDocument = (db, document, collection, callback) => {
@@ -10,7 +8,7 @@ exports.insertDocument = (db, document, collection, callback) => {
     });
 };
 
-exports.findDocument = (db, collection, callback) => {
+exports.findDocuments = (db, collection, callback) => {
     const coll = db.collection(collection);
     coll.find().toArray((err, docs) => {
         assert.strictEqual(err, null);
@@ -28,7 +26,7 @@ exports.removeDocument = (db, document, collection, callback) => {
 
 exports.updateDocument = (db, document, update, collection, callback) => {
     const coll = db.collection(collection);
-    coll.updateOne(document, { $set:update }, null, (err, result) => {
+    coll.updateOne(document, { $set: update }, null, (err, result) => {
         assert.strictEqual(err, null);
         callback(result);
     });
